@@ -1,0 +1,19 @@
+Rust also supports structs that look similar to tuples, called tuple structs. Tuple structs have the added meaning the struct name provides but don’t have names associated with their fields; rather, they just have the types of the fields.
+
+Methods can take ownership of self, borrow self immutably as we’ve done here, or borrow self mutably, just as they can any other parameter. If we wanted to change the instance that we’ve called the method on as part of what the method does, we’d use &mut self as the first parameter. Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation.
+
+Getters are methods have with the same name as a field.  Their sole purpose is to return the value of their field. Getters are useful because you can make the field private but the method public and thus enable read-only access to that field as part of the type’s public API.
+
+Retains it's accuracy when dealing with managing memory, thus retaining speed, but implements some ergonomics for easier coding that do not hurt speed like:
+automatic referencing & dereferencing -- the compiler figures out if the caller of a method is the object or a pointer to the object.  e.g.
+obj.method(&var) is the same as:
+(&obj).method(&var).
+in C/C++:	use . (dot) notation for actual objects e.g. obj.doSomething()
+		use -> (arrow) notation for pointers to objects - *obj->doIt()
+
+All functions defined within an impl block are called associated functions because they’re associated with the type named after the impl. We can define associated functions that DON'T have self as their first parameter (and thus are not methods) because they don’t need an instance of the type to work with. To call self-less associated functions, we use the :: syntax with the struct name.  e.g. Struct::associatedFn().
+
+Enums allow you to define a type by enumerating its possible variants.
+		
+
+
